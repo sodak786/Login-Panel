@@ -1,5 +1,6 @@
 <?php
-
+global $conn;
+include "db_conn.php";
 if(isset($_POST['uname']) && isset($_POST['password'])){
     function validate($data){
         $data = trim($data);
@@ -7,18 +8,33 @@ if(isset($_POST['uname']) && isset($_POST['password'])){
         $data = htmlspecialchars($data);
         return $data;
     }
-    $name = validate($_POST['uname']);
+    $uname = validate($_POST['uname']);
     $pass = validate($_POST['password']);
 
 
-    if(empty($name)){
+    if(empty($uname)){
         header("Location: index.php?error=Username is required");
         exit();
     }elseif(empty($pass)){
         header("Location: index.php?error=Password is required");
         exit();
     }else{
-        echo "valid input";
+        $sql = "SELECT * FROM users WHERE user_name = '$uname' AND password='$pass'";
+
+        $result = mysqli_query($conn, $sql);
+
+        if(mysqli_num_rows($result) === 1){
+            $row = mysqli_fetch_assoc($result);
+            if($row['user_name'] === $uname && $row['password'] === '$pass'){
+                echo "Logged in";
+            }else{
+                header("Location: index.php?error=Incorrect username or password");
+                exit();
+            }
+        }else{
+            header("Location: index.php?error=Incorrect username or password");
+            exit();
+        }
     }
 
 }else{
