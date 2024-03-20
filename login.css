@@ -11,6 +11,7 @@ body {
   justify-content: center;
   align-items: center;
   background-color: #272727;
+  flex-direction: column;
 }
 body form {
   background-color: #545454;
@@ -59,6 +60,35 @@ body form button:hover {
 body form button:active {
   opacity: 20%;
   transition-duration: 0.1s;
+}
+
+#HOME a {
+  width: 10vw;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  margin-bottom: 10px;
+  text-decoration: none;
+  background-color: #ffffff;
+  text-align: center;
+  line-height: 40px;
+  color: black;
+  display: block;
+}
+#HOME a:hover {
+  cursor: pointer;
+  opacity: 60%;
+  transition-duration: 0.2s;
+}
+#HOME a:active {
+  opacity: 20%;
+  transition-duration: 0.1s;
+}
+#HOME h1 {
+  text-align: center;
+  font-size: 50px;
+  margin-bottom: 20px;
+  color: white;
 }
 
 /*# sourceMappingURL=login.css.map */
